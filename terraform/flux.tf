@@ -67,7 +67,7 @@ resource "null_resource" "k3s_server_flux_init" {
         inline = [
             "sudo kubectl create namespace ${data.flux_sync.cluster.namespace} --dry-run=client -o yaml | sudo kubectl apply -f -",
             "sudo kubectl -n ${data.flux_sync.cluster.namespace} create secret generic sops-age --from-literal=age.ageKey='${data.sops_file.secrets.data["age.agekey"]}' --dry-run=client -o yaml | sudo kubectl apply -f -",
-            "sudo kubectl -n ${data.flux_sync.cluster.namespace} create secret generic ${data.flux_sync.cluster.secret} --from-literal=identity='${data.sops_file.secrets.data["github.deploy-key"]}' --from-literal=known_hosts='${local.github_known_hosts}' --dry-run=client -o yaml | sudo kubectl apply -f -",
+            "sudo kubectl -n ${data.flux_sync.cluster.namespace} create secret generic ${data.flux_sync.cluster.secret} --from-literal=identity='${data.sops_file.secrets.data["github.deploy-key.private"]}' --from-literal=identity.pub='${data.sops_file.secrets.data["github.deploy-key.public"]}' --from-literal=known_hosts='${local.github_known_hosts}' --dry-run=client -o yaml | sudo kubectl apply -f -",
             "sudo kubectl apply -f /home/debian/flux_install.yaml",
             "sudo kubectl apply -f /home/debian/flux_sync.yaml",
             

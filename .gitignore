@@ -1,7 +1,7 @@
 # Secret keys
 secrets/age-key.txt
 secrets/cluster.txt
-secrets/github-deploy-key
+secrets/git-deploy-key
 
 # .terraform directory
 **/.terraform/*
