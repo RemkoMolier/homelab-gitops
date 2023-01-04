@@ -90,7 +90,8 @@ resource "null_resource" "k3s_server_cluster_init" {
 
     provisioner "remote-exec" {
         inline = [
-            "curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=\"${var.k3s_version}\" K3S_TOKEN=\"${random_password.k3s_token.result}\" sh -s - server --cluster-init --disable servicelb --disable traefik --tls-san=172.16.0.50 --flannel-iface=eth1 --node-ip=${proxmox_vm_qemu.k3s_server[0].default_ipv4_address} --cluster-domain ${var.cluster_domain}",
+            "echo 'nameserver 172.16.0.1' | sudo tee /etc/k3s-resolv.conf",
+            "curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=\"${var.k3s_version}\" K3S_TOKEN=\"${random_password.k3s_token.result}\" sh -s - server --cluster-init --disable servicelb --disable traefik --tls-san=172.16.0.50 --flannel-iface=eth1 --node-ip=${proxmox_vm_qemu.k3s_server[0].default_ipv4_address} --cluster-domain ${var.cluster_domain} --resolv-conf=/etc/k3s-resolv.conf",
             "sudo kubectl wait --for=condition=Ready node/${proxmox_vm_qemu.k3s_server[0].name}",
             "sudo kubectl apply -f https://kube-vip.io/manifests/rbac.yaml",
             "sudo ctr image pull ghcr.io/kube-vip/kube-vip:${var.kube_vip_version} -q",
