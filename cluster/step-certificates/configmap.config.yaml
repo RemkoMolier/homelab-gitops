@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: step-certificates-config
+  namespace: step-certificates
+data:
+  ca.json: "{\n\t\"root\": \"/home/step/certs/root_ca.crt\",\n\t\"federatedRoots\":
+    null,\n\t\"crt\": \"/home/step/certs/intermediate_ca.crt\",\n\t\"key\": \"/home/step/secrets/intermediate_ca_key\",\n\t\"address\":
+    \":9000\",\n\t\"insecureAddress\": \"\",\n\t\"dnsNames\": [\n\t\t\"ca.molier.net\",\n\t\t\"ca.home.molier.net\",\n\t\t\"step-certificates.step-certificates.svc.lab.home.molier.net\",\n\t\t\"127.0.0.1\"\n\t],\n\t\"ssh\":
+    {\n\t\t\"hostKey\": \"/home/step/secrets/ssh_host_ca_key\",\n\t\t\"userKey\":
+    \"/home/step/secrets/ssh_user_ca_key\"\n\t},\n\t\"logger\": {\n\t\t\"format\":
+    \"text\"\n\t},\n\t\"db\": {\n\t\t\"type\": \"badgerv2\",\n\t\t\"dataSource\":
+    \"/home/step/db\",\n\t\t\"badgerFileLoadingMode\": \"\"\n\t},\n\t\"authority\":
+    {\n\t\t\"provisioners\": [\n\t\t\t{\n\t\t\t\t\"type\": \"JWK\",\n\t\t\t\t\"name\":
+    \"ca@molier.net\",\n\t\t\t\t\"key\": {\n\t\t\t\t\t\"use\": \"sig\",\n\t\t\t\t\t\"kty\":
+    \"EC\",\n\t\t\t\t\t\"kid\": \"udLwPGH7B-xdkidxydMPLMUIIDtdBzAWhkpC1hNnH7s\",\n\t\t\t\t\t\"crv\":
+    \"P-256\",\n\t\t\t\t\t\"alg\": \"ES256\",\n\t\t\t\t\t\"x\": \"tmrnvMpdHWB68qYddPLpyVIUSHmG8HinLfNWBJfgYjU\",\n\t\t\t\t\t\"y\":
+    \"hcK9Hb98bVHcRuXPW-m3RbBpQ8yGnojPuhR4SBCMqcs\"\n\t\t\t\t},\n\t\t\t\t\"encryptedKey\":
+    \"eyJhbGciOiJQQkVTMi1IUzI1NitBMTI4S1ciLCJjdHkiOiJqd2sranNvbiIsImVuYyI6IkEyNTZHQ00iLCJwMmMiOjEwMDAwMCwicDJzIjoieVhyVmlnQmlRdDc3UEhSaTJ0UUZ4QSJ9.AbJv_xfovuqeLZMu1cqCQPk2Zi3LkAAL8eojmoDY3njnV6S5Mxpq9Q.ao3he1ngsh2KYWKV.y0EqUCgAsVGVh80V9A567ue5UdtaXBDMcSiSLcpzxgEsS_lAMRW_01eVE_QMm7CuWd_6A2iHIf0jmt7ZcCwxqB79Mmd0z3FphCWeRHG1UFA4CDUgSkFx2Q3EoZ1kLwRVfXfibMofOCG1Uk4ErsdRSmHT2zGyWxydEGrPKX_ZvyR0hgGKq4PJCjc1kdRB4CuFuLlvPVc3wM6iCDwbNwS0lNg4m-gNELtY-5cCMsLXJecRMRV8WdEnwSVY4ZMiAmGcSCd905xQRWJKyHCOMZqKzCY-dlqa6TGF_XxQos5iH-tiXX4RjQX3n7JYTTyJXGVV1YyIGH4xYENQ0Rl10eo.q9Fo1EuHoSVcjgslZuo1XQ\",\n\t\t\t\t\"claims\":
+    {\n\t\t\t\t\t\"enableSSHCA\": true\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\":
+    \"ACME\",\n\t\t\t\t\"name\": \"acme\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"SSHPOP\",\n\t\t\t\t\"name\":
+    \"sshpop\",\n\t\t\t\t\"claims\": {\n\t\t\t\t\t\"enableSSHCA\": true\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t},\n\t\"tls\":
+    {\n\t\t\"cipherSuites\": [\n\t\t\t\"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256\",\n\t\t\t\"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256\"\n\t\t],\n\t\t\"minVersion\":
+    1.2,\n\t\t\"maxVersion\": 1.3,\n\t\t\"renegotiation\": false\n\t},\n\t\"templates\":
+    {\n\t\t\"ssh\": {\n\t\t\t\"user\": [\n\t\t\t\t{\n\t\t\t\t\t\"name\": \"config.tpl\",\n\t\t\t\t\t\"type\":
+    \"snippet\",\n\t\t\t\t\t\"template\": \"config/ssh_config.tpl\",\n\t\t\t\t\t\"path\":
+    \"~/.ssh/config\",\n\t\t\t\t\t\"comment\": \"#\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"name\":
+    \"step_includes.tpl\",\n\t\t\t\t\t\"type\": \"prepend-line\",\n\t\t\t\t\t\"template\":
+    \"config/ssh_step_includes.tpl\",\n\t\t\t\t\t\"path\": \"${STEPPATH}/ssh/includes\",\n\t\t\t\t\t\"comment\":
+    \"#\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"name\": \"step_config.tpl\",\n\t\t\t\t\t\"type\":
+    \"file\",\n\t\t\t\t\t\"template\": \"config/ssh_step_config.tpl\",\n\t\t\t\t\t\"path\":
+    \"ssh/config\",\n\t\t\t\t\t\"comment\": \"#\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"name\":
+    \"known_hosts.tpl\",\n\t\t\t\t\t\"type\": \"file\",\n\t\t\t\t\t\"template\": \"config/ssh_known_hosts.tpl\",\n\t\t\t\t\t\"path\":
+    \"ssh/known_hosts\",\n\t\t\t\t\t\"comment\": \"#\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"host\":
+    [\n\t\t\t\t{\n\t\t\t\t\t\"name\": \"sshd_config.tpl\",\n\t\t\t\t\t\"type\": \"snippet\",\n\t\t\t\t\t\"template\":
+    \"config/ssh_sshd_config.tpl\",\n\t\t\t\t\t\"path\": \"/etc/ssh/sshd_config\",\n\t\t\t\t\t\"comment\":
+    \"#\",\n\t\t\t\t\t\"requires\": [\n\t\t\t\t\t\t\"Certificate\",\n\t\t\t\t\t\t\"Key\"\n\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"name\":
+    \"ca.tpl\",\n\t\t\t\t\t\"type\": \"snippet\",\n\t\t\t\t\t\"template\": \"config/ssh_ca.tpl\",\n\t\t\t\t\t\"path\":
+    \"/etc/ssh/ca.pub\",\n\t\t\t\t\t\"comment\": \"#\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}"
+  defaults.json: "{\n\t\"ca-url\": \"https://ca.molier.net:9000\",\n\t\"ca-config\":
+    \"/home/step/config/ca.json\",\n\t\"fingerprint\": \"08e48405353dc41be80e4837e265a553fca37633fa1840fe872f45f33dca25c2\",\n\t\"root\":
+    \"/home/step/certs/root_ca.crt\"\n}"
+  ssh_ca.tpl: |
+    {{.Step.SSH.UserKey.Type}} {{.Step.SSH.UserKey.Marshal | toString | b64enc}}
+    {{- range .Step.SSH.UserFederatedKeys}}
+    {{.Type}} {{.Marshal | toString | b64enc}}
+    {{- end }}
+  ssh_config.tpl: "Host *\n{{- if or .User.GOOS \"none\" | eq \"windows\" }}\n{{-
+    if .User.StepBasePath }}\n\tInclude \"{{ .User.StepBasePath | replace \"\\\\\"
+    \"/\" | trimPrefix \"C:\" }}/ssh/includes\"\n{{- else }}\n\tInclude \"{{ .User.StepPath
+    | replace \"\\\\\" \"/\" | trimPrefix \"C:\" }}/ssh/includes\"\n{{- end }}\n{{-
+    else }}\n{{- if .User.StepBasePath }}\n\tInclude \"{{.User.StepBasePath}}/ssh/includes\"\n{{-
+    else }}\n\tInclude \"{{.User.StepPath}}/ssh/includes\"\n{{- end }}\n{{- end }}"
+  ssh_known_hosts.tpl: |
+    @cert-authority * {{.Step.SSH.HostKey.Type}} {{.Step.SSH.HostKey.Marshal | toString | b64enc}}
+    {{- range .Step.SSH.HostFederatedKeys}}
+    @cert-authority * {{.Type}} {{.Marshal | toString | b64enc}}
+    {{- end }}
+  ssh_sshd_config.tpl: "Match all\n\tTrustedUserCAKeys /etc/ssh/ca.pub\n\tHostCertificate
+    /etc/ssh/{{.User.Certificate}}\n\tHostKey /etc/ssh/{{.User.Key}}"
+  ssh_step_config.tpl: "Match exec \"step ssh check-host{{- if .User.Context }} --context
+    {{ .User.Context }}{{- end }} %h\"\n{{- if .User.User }}\n\tUser {{.User.User}}\n{{-
+    end }}\n{{- if or .User.GOOS \"none\" | eq \"windows\" }}\n\tUserKnownHostsFile
+    \"{{.User.StepPath}}\\ssh\\known_hosts\"\n\tProxyCommand C:\\Windows\\System32\\cmd.exe
+    /c step ssh proxycommand{{- if .User.Context }} --context {{ .User.Context }}{{-
+    end }} %r %h %p\n{{- else }}\n\tUserKnownHostsFile \"{{.User.StepPath}}/ssh/known_hosts\"\n\tProxyCommand
+    step ssh proxycommand{{- if .User.Context }} --context {{ .User.Context }}{{-
+    end }} %r %h %p\n{{- end }}\n"
+  ssh_step_includes.tpl: '{{- if or .User.GOOS "none" | eq "windows" }}Include "{{
+    .User.StepPath | replace "\\" "/" | trimPrefix "C:" }}/ssh/config"{{- else }}Include
+    "{{.User.StepPath}}/ssh/config"{{- end }}'
+
