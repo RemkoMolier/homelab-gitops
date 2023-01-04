@@ -71,9 +71,9 @@ resource "proxmox_vm_qemu" "k3s_server" {
         ]
     }
 
-    depends_on = [
-        packer_image.debian-11-netinstall
-    ]
+    #depends_on = [
+    #    packer_image.debian-11-netinstall
+    #]
 }
 
 

@@ -27,7 +27,7 @@ variable "debian_version" {
 
 variable "kube_vip_version" {
     type = string
-    default = "v0.5.6"
+    default = "v0.5.7"
 }
 
 variable "ssh_keys" {
