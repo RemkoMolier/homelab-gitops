@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - flux-system
 - kube-system
+- step-certificates
