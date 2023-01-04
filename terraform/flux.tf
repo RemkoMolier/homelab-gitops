@@ -44,7 +44,7 @@ resource "remote_file" "gotk_components_yaml" {
   }
 
   content = file("../cluster/flux-system/gotk-components.yaml")
-  path = "/home/debian/gotk_components.yaml"
+  path = "/home/debian/gotk-components.yaml"
   
 }
 
