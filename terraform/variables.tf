@@ -51,6 +51,12 @@ variable "repository_branch" {
     description = "branch name"
 }
 
+variable "flux_namespace" {
+    type = string
+    default = "flux-system"
+    description = "flux namespace"
+}
+
 variable "flux_target_path" {
     type        = string
     description = "flux sync target path"
