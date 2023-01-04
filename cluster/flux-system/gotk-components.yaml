@@ -6377,7 +6377,7 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller.flux-system.svc.home.molier.net./
+        - --events-addr=http://notification-controller.flux-system.svc.lab.home.molier.net./
         - --watch-all-namespaces=true
         - --log-level=info
         - --log-encoding=json
@@ -6460,7 +6460,7 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller.flux-system.svc.home.molier.net./
+        - --events-addr=http://notification-controller.flux-system.svc.lab.home.molier.net./
         - --watch-all-namespaces=true
         - --log-level=info
         - --log-encoding=json
@@ -6633,13 +6633,13 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller.flux-system.svc.home.molier.net./
+        - --events-addr=http://notification-controller.flux-system.svc.lab.home.molier.net./
         - --watch-all-namespaces=true
         - --log-level=info
         - --log-encoding=json
         - --enable-leader-election
         - --storage-path=/data
-        - --storage-adv-addr=source-controller.$(RUNTIME_NAMESPACE).svc.home.molier.net.
+        - --storage-adv-addr=source-controller.$(RUNTIME_NAMESPACE).svc.lab.home.molier.net.
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:

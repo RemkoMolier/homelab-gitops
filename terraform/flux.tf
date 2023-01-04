@@ -5,7 +5,7 @@ data "flux_install" "cluster" {
 
 data "flux_sync" "cluster" {
   target_path = var.flux_target_path
-  url         = "https://github.com/${var.repository_owner}/${var.repository_name}.git"
+  url         = "ssh://git@github.com/${var.repository_owner}/${var.repository_name}.git"
   branch      = var.repository_branch
 }
 
