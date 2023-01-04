@@ -2,9 +2,14 @@
 secrets/age-key.txt
 secrets/cluster.txt
 secrets/git-deploy-key
+secrets/smallstep-certificates-password
 
 # .terraform directory
 **/.terraform/*
+
+# .config directory
+**/.config/*
+
 
 # .tfstate files
 *.tfstate
