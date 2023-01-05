@@ -46,6 +46,10 @@ spec:
           value: kube-system
         - name: vip_ddns
           value: "false"
+        - name: lb_enable
+          value: "true"
+        - name: lb_port
+          value: "6443"
         - name: svc_enable
           value: "true"
         - name: vip_leaderelection
@@ -60,6 +64,8 @@ spec:
           value: 172.16.0.50
         - name: prometheus_server
           value: :2112
+        - name: svc_election
+          value: "true"
         image: ghcr.io/kube-vip/kube-vip:v0.5.7
         imagePullPolicy: Always
         name: kube-vip
