@@ -85,7 +85,7 @@ resource "null_resource" "k3s_server_flux_init" {
     provisioner "remote-exec" {
         inline = [
             "sudo kubectl create namespace ${var.flux_namespace} --dry-run=client -o yaml | sudo kubectl apply -f -",
-            "sudo kubectl -n ${var.flux_namespace} create secret generic sops-age --from-literal=age.ageKey='${data.sops_file.secrets.data["age.agekey"]}' --dry-run=client -o yaml | sudo kubectl apply -f -",
+            "sudo kubectl -n ${var.flux_namespace} create secret generic sops-age --from-literal=age.agekey='${data.sops_file.secrets.data["age.agekey"]}' --dry-run=client -o yaml | sudo kubectl apply -f -",
             "sudo kubectl -n ${var.flux_namespace} create secret generic ${var.repository_name} --from-literal=identity='${data.sops_file.secrets.data["git.deploy-key.private"]}' --from-literal=identity.pub='${data.sops_file.secrets.data["git.deploy-key.public"]}' --from-literal=known_hosts='${local.github_known_hosts}' --dry-run=client -o yaml | sudo kubectl apply -f -",
             "sudo kubectl apply -f /home/debian/gotk-components.yaml",
             "sudo kubectl apply -f /home/debian/gitrepository.yaml",
