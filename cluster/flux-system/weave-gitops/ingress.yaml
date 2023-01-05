@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weave-gitops-ingress
+  namespace: flux-system
+spec:
+  rules:
+  - host: weave-gitops.lab.home.molier.net
+    http:
+      paths:
+        - backend:
+            service:
+              name: weave-gitops
+              port:
+                number: 9000
