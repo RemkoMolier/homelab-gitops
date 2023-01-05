@@ -18,5 +18,8 @@ spec:
   releaseName: traefik
   values:
     service:
-      type: NodePort
+      spec:
+        loadBalancerIP: 172.16.0.50
+      externalIPs:
+        - 172.16.0.50
     
