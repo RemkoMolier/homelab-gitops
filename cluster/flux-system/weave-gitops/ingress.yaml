@@ -4,6 +4,9 @@ metadata:
   name: weave-gitops-ingress
   namespace: flux-system
 spec:
+  tls:
+  - hosts:
+      - weave.gitops.lab.home.molier.net
   rules:
   - host: weave-gitops.lab.home.molier.net
     http:
