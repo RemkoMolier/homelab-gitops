@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - smallstep.yaml
 - jetstack.yaml
+- weaveworks.yaml
