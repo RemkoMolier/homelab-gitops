@@ -7,3 +7,4 @@ resources:
 - secret.ca-password.sops.yaml
 - secret.secrets.sops.yaml
 - helmrelease.yaml
+- ingressroute.yaml

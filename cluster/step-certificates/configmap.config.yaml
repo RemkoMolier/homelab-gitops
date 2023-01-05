@@ -6,7 +6,7 @@ metadata:
 data:
   ca.json: "{\n\t\"root\": \"/home/step/certs/root_ca.crt\",\n\t\"federatedRoots\":
     null,\n\t\"crt\": \"/home/step/certs/intermediate_ca.crt\",\n\t\"key\": \"/home/step/secrets/intermediate_ca_key\",\n\t\"address\":
-    \":9000\",\n\t\"insecureAddress\": \"\",\n\t\"dnsNames\": [\n\t\t\"ca.molier.net\",\n\t\t\"ca.home.molier.net\",\n\t\t\"step-certificates.step-certificates.svc.lab.home.molier.net\",\n\t\t\"127.0.0.1\"\n\t],\n\t\"ssh\":
+    \":9000\",\n\t\"insecureAddress\": \"\",\n\t\"dnsNames\": [\n\t\t\"ca.molier.net\",\n\t\t\"ca.home.molier.net\",\n\t\t\"ca.lab.home.molier.net\",\n\t\t\"step-certificates.step-certificates.svc.lab.home.molier.net\",\n\t\t\"127.0.0.1\"\n\t],\n\t\"ssh\":
     {\n\t\t\"hostKey\": \"/home/step/secrets/ssh_host_ca_key\",\n\t\t\"userKey\":
     \"/home/step/secrets/ssh_user_ca_key\"\n\t},\n\t\"logger\": {\n\t\t\"format\":
     \"text\"\n\t},\n\t\"db\": {\n\t\t\"type\": \"badgerv2\",\n\t\t\"dataSource\":
