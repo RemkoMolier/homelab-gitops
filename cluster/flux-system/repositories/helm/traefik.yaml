@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  url: https://traefik.github.io/charts
+  url: https://helm.traefik.io/traefik
