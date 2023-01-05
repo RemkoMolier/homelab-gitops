@@ -8,7 +8,9 @@ spec:
   - host: weave-gitops.lab.home.molier.net
     http:
       paths:
-        - backend:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
             service:
               name: weave-gitops
               port:
