@@ -19,6 +19,7 @@ spec:
   values:
     service:
       spec:
+        externalTrafficPolicy: Local
         loadBalancerIP: 172.16.0.50
       externalIPs:
         - 172.16.0.50
