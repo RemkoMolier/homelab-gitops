@@ -19,3 +19,10 @@ spec:
   values:
     service:
       type: NodePort
+    ports:
+      web:
+        nodePort: 80
+        redirectTo: websecure
+      websecure:
+        nodePort: 443
+        
