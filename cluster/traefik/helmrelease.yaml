@@ -17,6 +17,6 @@ spec:
   timeout: 5m
   releaseName: traefik
   values:
-    hostNetwork: true
     service:
-      enabled: false  
+      type: NodePort
+    
