@@ -17,12 +17,6 @@ spec:
   timeout: 5m
   releaseName: traefik
   values:
+    hostNetwork: true
     service:
-      type: NodePort
-    ports:
-      web:
-        nodePort: 80
-        redirectTo: websecure
-      websecure:
-        nodePort: 443
-        
+      enabled: false  
