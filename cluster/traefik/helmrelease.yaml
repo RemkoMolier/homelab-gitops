@@ -17,3 +17,5 @@ spec:
   timeout: 5m
   releaseName: traefik
   values:
+    service:
+      type: NodePort
