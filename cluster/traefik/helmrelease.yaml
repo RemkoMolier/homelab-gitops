@@ -6,11 +6,14 @@ metadata:
 spec:
   chart:
     spec:
-      chart: traefik/traefik
+      chart: traefik
+      version: 10.x
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
   interval: 1m0s
+  timeout: 5m
+  releaseName: traefik
   values:
